@@ -77,10 +77,10 @@ const Customer = () => {
             <div className="orders">
                 <div className="table-tools">
                     <div className="dummy-element">
-                        <h2>transactions</h2>
+                        <h3>transactions</h3>
                     </div>
                     <div className="table-search-container">
-                        <input type="text" name="table-search" value={searchItem} onChange={handleInputChange} autoFocus placeholder="Search..." />
+                        <input type="text" name="table-search" value={searchItem} onChange={handleInputChange} placeholder="Search..." />
                         <button className="table-search-btn">
                             {searchBtn.searchIcon && <i className="fas fa-search"></i>}
                             {searchBtn.resetIcon && <i className="fas fa-times" onClick={clearSearchForm}></i>}

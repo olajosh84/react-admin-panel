@@ -54,7 +54,7 @@ const Customers = () => {
                         <button className="add-customer">add new</button>
                     </div>*/}
                     <div className="table-search-container">
-                        <input type="text" name="table-search" autoFocus value={searchItem} placeholder="Search..." onChange={handleInputChange} />
+                        <input type="text" name="table-search" value={searchItem} placeholder="Search..." onChange={handleInputChange} />
                         <button className="table-search-btn">
                             {searchBtn.searchIcon && <i className="fas fa-search"></i>}
                             {searchBtn.resetIcon && <i className="fas fa-times" onClick={clearSearchForm}></i>}

@@ -34,7 +34,7 @@ h1{
     font-size: 2rem;
     text-transform: capitalize;
 }
-h2{
+h2, h3{
     font-weight: 500;
     letter-spacing: $letter-spacing;
     color: $font-color-2;
@@ -201,7 +201,7 @@ Nav Bar
         animation: languageModal 0.4s ease-in-out;
 
         .lang-heading{
-            margin-bottom: 1rem;;
+            margin: 1rem 0;
         }
         
         .all-languages{
@@ -958,7 +958,7 @@ Users Section
         display: flex;
         align-items: center;
         justify-content: space-between;
-
+        gap: 2rem;
         .add-user{
             background-color: $primary-color-1;
             padding: 0.5rem 0.7rem;
@@ -1217,7 +1217,7 @@ Products Section
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
+        gap: 2rem;
         .add-product{
             background-color: $primary-color-1;
             padding: 0.5rem 0.7rem;
@@ -1406,6 +1406,7 @@ orders
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 2rem;
         .dummy-element{
             text-transform: capitalize;
         }
@@ -1624,7 +1625,8 @@ start single product
                 grid-template-columns: repeat(2, 1fr);
 
                 .product-tab{
-                    background-color: #ddd;
+                    background-color: transparent;
+                    color: $font-color-2;
                     border: none;
                     padding: 0.3rem 0.5rem;
                     text-transform: capitalize;
@@ -1632,13 +1634,14 @@ start single product
                     transition: $transition;
                     letter-spacing: $letter-spacing;
                     cursor: pointer;
-
+                    border-radius: 20px;
                     &:hover:not(.active){
-                        background-color: #ccc;
+                        background-color: #f2f2f2;
                     }
-
                     &.active{
-                        background-color: #fff;
+                        background-color: #f77426;
+                        color: #fff;
+                        
                         cursor: auto;
                     }
                 }

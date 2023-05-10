@@ -50,9 +50,9 @@ const Orders = () => {
             </div>
             <div className="orders">
                 <div className="table-tools">
-                    <div className="dummy-element"></div>
+                    {/*<div className="dummy-element"></div>*/}
                     <div className="table-search-container">
-                        <input type="text" name="table-search" value={searchItem} onChange={handleInputChange} autoFocus placeholder="Search..." />
+                        <input type="text" name="table-search" value={searchItem} onChange={handleInputChange} placeholder="Search..." />
                         <button className="table-search-btn">
                             {searchBtn.searchIcon && <i className="fas fa-search"></i>}
                             {searchBtn.resetIcon && <i className="fas fa-times" onClick={clearSearchForm}></i>}

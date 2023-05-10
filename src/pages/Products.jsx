@@ -93,7 +93,7 @@ const Products = () => {
                         <button className="add-product" onClick={() => setShowModal(true)}>add new</button>
                     </div>
                     <div className="table-search-container">
-                        <input type="text" value={searchItem} onChange={handleInputChange} autoFocus placeholder="Search..." />
+                        <input type="text" value={searchItem} onChange={handleInputChange} placeholder="Search..." />
                         <button className="table-search-btn">
                             {searchBtn.searchIcon && <i className="fas fa-search"></i>}
                             {searchBtn.resetIcon && <i className="fas fa-times" onClick={clearSearchForm}></i>}
@@ -149,7 +149,7 @@ const Products = () => {
                             </div>
                             <div className="form-input">
                                 <label>product title</label>
-                                <input type="text" name="title" value={formData.title} placeholder="Title" autoFocus onChange={productInputChange} autoComplete="off" required  />
+                                <input type="text" name="title" value={formData.title} placeholder="Title" onChange={productInputChange} autoComplete="off" required  />
                             </div>
                             <div className="form-input">
                                 <label>product price</label>
