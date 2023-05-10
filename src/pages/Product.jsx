@@ -107,7 +107,7 @@ const Product = () => {
                             
                             <div className="form-input">
                                 <label>name</label>
-                                <input type="text" placeholder="Name" autoFocus  required  />
+                                <input type="text" placeholder="Name" required  />
                             </div>
                             <div className="form-input">
                                 <label>email</label>
