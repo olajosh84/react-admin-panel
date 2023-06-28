@@ -1,20 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout";
-import Dashboard from "./pages/Dashboard";
-import Customers from "./pages/Customers";
-import Customer from "./pages/Customer";
-import Products from "./pages/Products";
-import Shop from "./pages/Shop";
-import Product from "./pages/Product";
-import Charts from "./pages/Charts";
-import Orders from "./pages/Orders";
-import Modals from "./pages/Modals";
-import Accordion from "./pages/Accordion";
-import Users from "./pages/Users";
-import User from "./pages/User";
-import Cart from "./pages/Cart";
-import Error404 from "./pages/Error404";
-import Error500 from "./pages/Error500";
+import {
+  Dashboard,Customers,Customer,Products,Shop,
+  Product,Charts,Orders,Modals,Accordion,Users,
+  User,Cart,Error404,Error500} from "./pages";
 
 const App = () => {
  

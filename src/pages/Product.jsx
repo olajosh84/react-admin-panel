@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import products from "../assets/js/products";
 import "../assets/css/ratings.css";
 import { useGlobalContext } from "../context";
 import Navigation from "../components/Navigation";
+import Alert from "../components/Alert";
 
 const Product = () => {
     const [showActiveTab, setShowActiveTab] = useState({description: true, reviews: false});
-    const { formatPrice } = useGlobalContext();
+    const { formatPrice, addToCart, showAlert, productTitle } = useGlobalContext();
+    const inputRef = useRef(null);
     const page = 'shop';
     const handleTabSwitch = (e) => {
         let activeId = e.currentTarget.id;
@@ -44,10 +46,11 @@ const Product = () => {
     if(!productInfo){
         return <Navigate to='/error404'></Navigate>
     }
-    const {img, title, desc, price} = productInfo;
+    const {id, img, title, desc, price} = productInfo;
     return (
         <section className="product-section">
-             <div className="heading navigate">
+            {showAlert && <Alert productTitle={productTitle} productQty={inputRef.current.value} />}
+            <div className="heading navigate">
                 <h2>product</h2>
                 <Navigation parentPage={page} />
             </div>
@@ -64,12 +67,12 @@ const Product = () => {
                                 <button data-id="minus" onClick={handleQty}>
                                     <i className="fas fa-minus"></i>
                                 </button>
-                                <input type="number" min="1" defaultValue={1} />
+                                <input type="number" min="1" defaultValue={1} ref={inputRef} />
                                 <button data-id="plus" onClick={handleQty}>
                                     <i className="fas fa-plus"></i>
                                 </button>
                             </div>
-                            <button>add to cart</button>
+                            <button onClick={() => addToCart(id, title, Number(inputRef.current.value), price, img)}>add to cart</button>
                         </div>
                     </div>
                 </div>

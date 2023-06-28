@@ -1,11 +1,25 @@
+import {useState, useRef} from "react";
 import { useGlobalContext } from "../context";
-const Cart = () => {
-    const { customerCart, setCustomerCart, formatPrice } = useGlobalContext();
-    let total = 0;
+const coupon = "olajeks";
 
-    const deleteItem = (id) => {
-        setCustomerCart(prevItems => prevItems.filter(item => item.id !== id));
+const Cart = () => {
+    const { cart, cartTotal, removeCartItem, increaseCartItem, decreaseCartItem, formatPrice } = useGlobalContext();
+    const [hasCoupon,setHasCoupon] = useState(false);
+    const couponRef = useRef(null);
+    const handleApplyCoupon = (e) => {
+        e.preventDefault();
+        if(!couponRef.current.value){
+            alert("Please enter a coupon code");
+            return;
+        }
+        if(couponRef.current.value === coupon){
+            setHasCoupon(true);
+        }else{
+            alert("Please enter a valid coupon code");
+        }
+        couponRef.current.value = "";
     }
+
     return (
         <section className="cart-section">
             <div className="heading">
@@ -26,13 +40,12 @@ const Cart = () => {
                         </thead>
                         <tbody>
                             {
-                                customerCart.map(items => {
-                                    const {id, img, title, price} = items;
-                                    let productQty = 2, amount = productQty * price;
-                                    total += amount ;
+                                cart.map(items => {
+                                    const {id, img, title, price, qty} = items;
+                                    
                                     return <tr key={id}>
                                                 <td>
-                                                    <button className="remove-product-btn" onClick={() => deleteItem(id)}><i className="fas fa-times"></i></button>
+                                                    <button className="remove-product-btn" onClick={() => removeCartItem(id)}><i className="fas fa-times"></i></button>
                                                 </td>
                                                 <td>
                                                     <img src={require(`../assets/images/products/${img}`)} alt=""  />
@@ -41,45 +54,57 @@ const Cart = () => {
                                                 <td>{formatPrice(price)}</td>
                                                 <td>
                                                     <div className="qty">
-                                                        <button><i className="fas fa-minus"></i></button>
-                                                        <input type="number" min="1" defaultValue="2"  />
-                                                        <button><i className="fas fa-plus"></i></button>
+                                                        <button><i className="fas fa-minus" onClick={() => decreaseCartItem(id)}></i></button>
+                                                        <div className="cartQty">{qty}</div>
+                                                        <button><i className="fas fa-plus" onClick={() => increaseCartItem(id)}></i></button>
                                                     </div>
                                                 </td>
-                                                <td>{formatPrice(amount)}</td>
+                                                <td>{formatPrice(qty * price)}</td>
                                             </tr>
                                 })
                             }
-                            {customerCart.length < 1 && <tr><td colSpan="6">Cart is empty</td></tr> }
+                            {cart.length < 1 && <tr><td colSpan="6">Cart is empty</td></tr> }
                         </tbody>
                     </table>
                 </div>
-                <div className="cart-footer">
+                {cart.length > 0 && <div className="cart-footer">
                     <div className="coupon">
-                        <input type="text" placeholder="Coupon Code"/>
-                        <button>apply coupon</button>
+                        <input type="text" placeholder="Coupon Code (e.g olajeks)" ref={couponRef} />
+                        <button onClick={handleApplyCoupon}>apply coupon</button>
                     </div>
                     <button className="update-cart-btn">update cart</button>
-                </div>
-                <div className="cart-totals-container">
+                </div>}
+                {cart.length > 0 && <div className="cart-totals-container">
                     <div style={{visibility: "hidden"}}>This is a dummy element</div>
                     <div className="cart-totals">
                         <h2>cart totals</h2>
                         <table>
                             <tbody>
-                                <tr>
+                            <tr>
                                     <th>subtotal</th>
-                                    <td>{formatPrice(total)}</td>
+                                    <td>{formatPrice(cartTotal)}</td>
                                 </tr>
+                                {
+                                    hasCoupon &&
+                                    <tr>
+                                        <th>Less Coupon</th>
+                                        <td>{formatPrice(0.10 * cartTotal)}</td>
+                                    </tr>  
+                                }
+                                
                                 <tr>
                                     <th>total</th>
-                                    <td>{formatPrice(total)}</td>
+                                    <td>
+                                        {
+                                            hasCoupon ? formatPrice(cartTotal - (0.10 * cartTotal)) : formatPrice(cartTotal) 
+                                        }
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button className="cart-totals-btn">procedd to checkout</button>
+                        <button className="cart-totals-btn">proceed to checkout</button>
                     </div>
-                </div>
+                </div>}
             </div>
             
         </section>

@@ -73,7 +73,10 @@ ul,ol{
 section{
     width: 90vw;
     margin: 1rem auto;
-    
+    /*for footer to stay put*/
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 .heading{
     margin-bottom: 1rem;
@@ -395,7 +398,9 @@ Nav Bar
     right: 0;
     width: 80vw;
     max-width: 400px;
+    max-height: 100vh;
     overflow: auto;
+    scrollbar-width: thin;
     transition: $transition;
     transform: translateX(100%);
     z-index: 3;
@@ -478,18 +483,26 @@ Nav Bar
                 text-transform: capitalize;
             }
             button{
-                background-color: #f77426;
+                background-color: transparent;/*#f77426;*/
                 box-shadow: $box-shadow;
                 padding: 0.5rem;
                 cursor: pointer;
                 text-transform: capitalize;
-                border: 1px solid #f77426;
+                border: 1px solid $primary-color-1;
                 border-radius: 5px;
-                color: #fff;
+                color: $font-color-2;
                 font-size: 1rem;
                 letter-spacing: $letter-spacing;
-                a{
+                transition: $transition;
+                &:hover{
+                    background-color: $primary-color-1;
                     color: #fff;
+                    a{
+                        color: #fff;
+                    }
+                }
+                a{
+                    color: $font-color-2;
                 }
             }
         }
@@ -1509,8 +1522,10 @@ start Store
             text-transform: capitalize;
         }
         .addtocart-btn{
-            background-color: #f77426;/*#dc3545;*/
+            background-color: $primary-color-2;/*#f77426;/*#dc3545;*/
             border-radius: 5px;
+            margin: 0 auto;
+            width: 50%;
             border: none;
             color: #fff;
             cursor: pointer;
@@ -1518,7 +1533,9 @@ start Store
             text-align: center;
             text-transform: uppercase;
             transition: $transition;
-            
+            &:hover{
+                background-color: $primary-color-1;
+            }
         }
 
         .store-product-img{
@@ -1547,6 +1564,34 @@ start Store
             border-top-left-radius: 5px;
             text-transform: capitalize;
         }
+    }
+}
+/*Alert component*/
+.cart-alert{
+    position: fixed;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    z-index: 999;
+    padding: 1rem;
+    box-shadow: $box-shadow;
+    width: 90vw;
+    max-width: 500px;
+    border-radius: 15px;
+    animation: animateAlert 0.4s ease-in-out;
+
+    .alert-left{
+        display: flex;
+        gap: 0.3rem;
+        margin-right: 0.2rem;
+        color: green;
+        .cart-link a{
+            color: blue;
+        }
+    }
+    .alert-right{
+        cursor: pointer;
+       
     }
 }
 /*
@@ -1605,7 +1650,7 @@ start single product
                         width: 5rem;
                     }
                     button{
-                        background-color: #f77426;
+                        background-color: $primary-color-2; /*#f77426;*/
                         border: none;
                         box-shadow: $box-shadow;
                         color: #fff;
@@ -1613,6 +1658,9 @@ start single product
                         padding: 0.3rem 0.5rem;
                         text-align: center;
                         text-transform: uppercase;
+                        &:hover{
+                            background-color: $primary-color-1;
+                        }
                     }
                 }
             }
@@ -1639,9 +1687,8 @@ start single product
                         background-color: #f2f2f2;
                     }
                     &.active{
-                        background-color: #f77426;
+                        background-color: $primary-color-1; /*#f77426;*/;
                         color: #fff;
-                        
                         cursor: auto;
                     }
                 }
@@ -1779,6 +1826,7 @@ Cart
         .cart-product-details{
             border-bottom: 1px solid #ddd;
             overflow: auto;
+            scrollbar-width: thin;
             table{
                 width: 100%;
                 border-collapse: collapse;
@@ -1813,18 +1861,22 @@ Cart
                     }
                     .qty{
                         display: flex;
-                        
+                        gap: 1rem;
+                        align-items: center;
                         input{
                             width: 3rem;
                             padding: 0.3rem;
                         }
                         button{
-                            background-color: #f77426;;
+                            background-color: $primary-color-2;
                             border: none;
                             cursor: pointer;
                             padding: 0.5rem;
                             color: #fff;
                             font-weight: bold;
+                            &:hover{
+                                background-color: $primary-color-1;
+                            }
                         }
                     }
                 }
@@ -1851,31 +1903,33 @@ Cart
            */
             .coupon{
                 display: flex;
-                
                 input{
                     outline: none;
                     padding: 0.5rem;
-                    border: 1px solid #f77426;
+                    border: 1px solid $primary-color-2;;
                     font-size: 0.9rem;
-                    width: 80%;
+                    width: 70%;
                 }
                 button{
                     border: none;
-                    background-color: #f77426;
+                    background-color: $primary-color-2;
                     cursor: pointer;
                     padding: 0.2rem;
-                    width: 20%;
+                    width: 30%;
                     text-align: center;
                     color: #fff;
                     text-transform: capitalize;
                     font-size: 0.8rem;
                     letter-spacing: $letter-spacing;
+                    &:hover{
+                        background-color: $primary-color-1;
+                    }
                 }
                 
             }
             .update-cart-btn{
                 border: none;
-                background-color: #f77426;
+                background-color: $primary-color-2;;
                 cursor: pointer;
                 padding: 0.5rem;
                 text-align: center;
@@ -1883,13 +1937,14 @@ Cart
                 text-transform: capitalize;
                 font-size: 0.9rem;
                 letter-spacing: $letter-spacing;
+                &:hover{
+                    background-color: $primary-color-1;
+                }
             }
         }
         .cart-totals-container{
             display: flex;
             justify-content: space-between;
-           
-
             h2{
                 text-transform: capitalize;
                 padding: 1rem 0;
@@ -1911,7 +1966,7 @@ Cart
             }
             button{
                 border: none;
-                background-color: #f77426;
+                background-color: $primary-color-2;;
                 cursor: pointer;
                 padding: 0.5rem;
                 text-align: center;
@@ -1921,6 +1976,9 @@ Cart
                 letter-spacing: $letter-spacing;
                 width: 100%;
                 margin: 1rem 0;
+                &:hover{
+                    background-color: $primary-color-1;
+                }
             }
 
         }
@@ -2415,7 +2473,14 @@ keyframes
         transform: scale(1);
     }
 }
-
+@keyframes animateAlert{
+    from{
+        top: -100%;
+    }
+    to{
+        top: 5rem;
+    }
+}
 
 /*
 ========================

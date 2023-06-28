@@ -4,8 +4,15 @@ import languages from "../assets/js/languages";
 import { useGlobalContext } from "../context";
 
 const Navbar = ({ setShowSidebar }) => {
-    let total = 0;
-    const {customerCart, setCustomerCart, sidebarRef, formatPrice, hideSidebar} = useGlobalContext();
+    const {
+        cart,  
+        cartAmount,
+        cartTotal,
+        clearCart,
+        removeCartItem, 
+        sidebarRef, 
+        formatPrice, 
+        hideSidebar} = useGlobalContext();
     const [language,setLanguage] = useState(languages[0].name);
     const [showModals, setShowModals] = useState(
         {
@@ -31,9 +38,7 @@ const Navbar = ({ setShowSidebar }) => {
     const closeCartModal = () => {
         cartRef.current.classList.remove("show-cart");
     }
-    const deleteItem = (id) => {
-        setCustomerCart(prevItems => prevItems.filter(item => item.id !== id));
-    }
+  
     const showModal = (e) => {
         //languageModalRef.current.classList.add("show-lang-modal");
         const modalId = e.currentTarget.dataset.id;
@@ -130,7 +135,7 @@ const Navbar = ({ setShowSidebar }) => {
                         <span>
                             <i className="icon fas fa-cart-plus"></i>
                         </span>
-                        <span className="count cart-count">{customerCart.length}</span>
+                        <span className="count cart-count">{cartAmount}</span>
                     </div>
                 </div>
             </nav>
@@ -224,42 +229,40 @@ const Navbar = ({ setShowSidebar }) => {
                 </div> 
                 <div className="cart-info">
                     {
-                        customerCart.map(item => {
-                            const {id, title, price, img} = item;
-                            let productQty = 2, amount = productQty * price;
-                            total += amount ;
+                        cart.map(item => {
+                            const {id, title, qty, price, img} = item;
                             
                             return  <div className="product-details" key={id}>
                                         <div className="product-img">
                                             <img src={require(`../assets/images/products/${img}`)} alt="" />
-                                            <button onClick={() => deleteItem(id)}>remove</button>
+                                            <button onClick={() => removeCartItem(id)}>remove</button>
                                         </div>
                                         <div className="product-info">
                                             <h4>{title}</h4>
                                             <div className="amount">
-                                                <span className="qty">{productQty}</span>
+                                                <span className="qty">{qty}</span>
                                                 <span>x</span>
                                                 <span className="price">{formatPrice(price)}</span>
                                                 <span>=</span>
-                                                <span className="total">{formatPrice(amount)}</span>
+                                                <span className="total">{formatPrice(price * qty)}</span>
                                             </div>
                                         </div>
                                     </div>
                         })
                     
                     }
-                    {customerCart.length < 1 && <div className="product-details">Cart is empty</div>}
-                    <div className="cart-info-footer">
-                        <h4>subtotal: <span>{formatPrice(total)}</span></h4>
+                    {cart.length < 1 && <div className="product-details">Cart is empty</div>}
+                    {cart.length > 0 && <div className="cart-info-footer">
+                        <h4>subtotal: <span>{formatPrice(cartTotal)}</span></h4>
                         <p>To find out your shipping cost , Please proceed to checkout.</p>
                         <button>
                             <Link to="/shop/cart" className="link">view cart</Link>
                         </button>
-                        <button>checkout</button>
+                        <button onClick={clearCart}>clear cart</button>
                         <button>
                             <Link to='/shop' className="link">continue shopping </Link>
                         </button>
-                    </div>
+                    </div>}
                 </div>
             </div>
             
