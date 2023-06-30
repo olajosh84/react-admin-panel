@@ -1,6 +1,7 @@
 # ADMIN PANEL APP
 
 This is a simple Admin Panel application built with the ReactJs Library.
+Visit https://olajeksadminpanel.netlify.app
 
 # Getting Started with Create React App
 
