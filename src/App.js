@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import SharedLayout from "./components/SharedLayout";
+import {SharedLayout, ScrollToTop} from "./components";
 import {
   Dashboard,Customers,Customer,Products,Shop,
   Product,Charts,Orders,Modals,Accordion,Users,
@@ -29,6 +29,8 @@ const App = () => {
           <Route path="error404" element={< Error404 />} />
         </Route>
       </Routes>
+      {/*scroll page to top on route change */}
+      <ScrollToTop />
     </div>
   )
 }

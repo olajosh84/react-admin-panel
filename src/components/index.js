@@ -6,3 +6,4 @@ export {default as Navigation} from "./Navigation";
 export {default as SharedLayout} from "./SharedLayout";
 export {default as Sidebar} from "./Sidebar";
 export {default as Todo} from "./Todo";
+export {default as ScrollToTop} from "./ScrollToTop";
