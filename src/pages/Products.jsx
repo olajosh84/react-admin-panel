@@ -134,7 +134,7 @@ const Products = () => {
                     </tbody>
                 </table>
             </div>
-            {showModal && <div className="product-modal-container">
+            {showModal && <div data-id="product-modal" className="product-modal-container" onClick={(e) => e.target.dataset.id === "product-modal" ? closeModal() :""}>
                 <div className="modal-content">
                     <div className="modal-title">
                         <h2>add new product</h2>

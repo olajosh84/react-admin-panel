@@ -36,6 +36,12 @@ const Modals = () => {
                 break;
         }
     }
+    /**close modal on outside click */
+    const closeModalOnClickOut = (e) => {
+        if(e.target.classList.contains("modal-overlay")){
+            setShowModals({simpleModal:false, modalWithHeader: false, animatedModal: false});
+        }
+    }
     const showAlert = (e) => {
         const id = e.target.dataset.id;
         switch (id) {
@@ -94,7 +100,7 @@ const Modals = () => {
 
             </div>
             {/* modals and content */}
-            {showModals.simpleModal && <div id="simple-modal" className="modal-overlay">
+            {showModals.simpleModal && <div id="simple-modal" className="modal-overlay" onClick={closeModalOnClickOut}>
                 <div className="modal-content simple-modal">
                     <div className="modal-title">
                         <h2>simple modal</h2>
@@ -105,7 +111,7 @@ const Modals = () => {
                     </div>
                 </div>
             </div>}
-            {showModals.modalWithHeader && <div id="modal-with-header-footer" className="modal-overlay">
+            {showModals.modalWithHeader && <div id="modal-with-header-footer" className="modal-overlay" onClick={closeModalOnClickOut}>
                 <div className="modal-content modal-with-header-footer">
                     <div className="modal-header">
                         <h2>modal header</h2>
@@ -118,7 +124,7 @@ const Modals = () => {
                     <div className="modal-footer">modal footer</div>
                 </div>
             </div>}
-            {showModals.animatedModal && <div id="animated-modal" className="modal-overlay">
+            {showModals.animatedModal && <div id="animated-modal" className="modal-overlay" onClick={closeModalOnClickOut}>
                 <div className="modal-content animated-modal">
                     <div className="modal-title">
                         <h2>animated modal</h2>

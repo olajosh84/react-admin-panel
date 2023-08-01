@@ -140,7 +140,7 @@ const Users = () => {
                     </tbody>
                 </table>
             </div>
-            {showModal && <div className="users-modal">
+            {showModal && <div data-id="users-modal" className="users-modal" onClick={(e) => e.target.dataset.id === "users-modal" ? closeModal() : ""}>
                 <div className="modal-content">
                     <div className="modal-title">
                         <h2>add new user</h2>

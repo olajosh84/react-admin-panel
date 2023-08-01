@@ -26,6 +26,7 @@ const AppProvider = ({ children }) => {
     }
     function hideSidebar(){
         sidebarRef.current.classList.remove("show-sidebar");
+        sidebarRef.current.parentElement.classList.remove("show-sidebar");
     }
     /**Reducer functions */
     const addToCart = (id, title, qty=1, price, img) => {
