@@ -120,12 +120,18 @@ Nav Bar
         justify-content: center;
         gap: 1rem;
         .logo{
-            text-transform: capitalize;
-            cursor: pointer;
+            /*text-transform: capitalize;
+            cursor: pointer;*/
             display: none;
-            a{
-                color: slateblue;
+            img{
+                width: 9rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
+            /*a{
+                color: slateblue;
+            }*/
         }
         .menu-icon{
             cursor: pointer;
@@ -597,9 +603,15 @@ Sidebar
             padding: 0.5rem 1rem;
             position: relative;
             .logo{
-                a{
-                    color: slateblue;
+                img{
+                    width: 10rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
+                /*a{
+                    color: slateblue;
+                }*/
             }
 
             .close-sidebar{

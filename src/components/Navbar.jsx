@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import languages from "../assets/js/languages";
 import { useGlobalContext } from "../context";
+import logo from "../assets/images/logo.png";
 
 const Navbar = ({ setShowSidebar }) => {
     const {
@@ -99,7 +100,9 @@ const Navbar = ({ setShowSidebar }) => {
             <nav className="navbar">
                 <div className="leftside-navbar">
                     <div className="logo nav-logo">
-                        <h2><Link to='/' className='link'>olajeks</Link></h2>
+                        <Link to='/' className="link">
+                            <img src={logo} alt="" />
+                        </Link>
                     </div>
                     <div className="menu-icon" onClick={showSidebar}>
                         <i className="fas fa-bars"></i>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useGlobalContext } from "../context.js";
+import logo from "../assets/images/logo.png";
 
 const Sidebar = () => {
     const[showDropdown, setShowDropdown] = useState(false);
@@ -35,7 +36,9 @@ const Sidebar = () => {
             <aside className="sidebar-menu" ref={sidebarRef}>
                 <div className="sidebar">
                     <div className="logo sidebar-logo">
-                        <h2><NavLink to="/" className='link'>olajeks</NavLink></h2>
+                        <NavLink to='/' className="link">
+                            <img src={logo} alt="" />
+                        </NavLink>
                     </div>
                     <div className="close-sidebar" onClick={() => hideSidebar() }>
                         <i className="fas fa-times"></i>
